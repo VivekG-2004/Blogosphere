@@ -1,136 +1,159 @@
 # Blog Management Application
 
-This is a full-stack blog application with:
+This is a **full-stack blog application** built with:
 
-- **Backend:** Spring Boot (Java)
-- **Frontend:** React (JavaScript)
-- **Database:** MySQL (via XAMPP / MariaDB)
+* **Backend:** Spring Boot (Java)
+* **Frontend:** React (JavaScript)
+* **Database:** MySQL (via XAMPP / MariaDB)
 
-Users can sign up, log in, create, edit, and view blog posts. This README provides **detailed instructions** to run the project from scratch.
-
----
-
-## Table of Contents
-
-1. [Prerequisites](#prerequisites)  
-2. [Backend Setup (Spring Boot)](#backend-setup-spring-boot)  
-3. [Frontend Setup (React)](#frontend-setup-react)  
-4. [Database Setup (MySQL)](#database-setup-mysql)  
-5. [Running the Application](#running-the-application)  
-6. [Testing Default Users](#testing-default-users)  
+Users can **sign up, log in, create, edit, and view blog posts**.
+This README provides **step-by-step instructions** to run the project from scratch.
 
 ---
 
-## Prerequisites
+## 📑 Table of Contents
 
-Before running the project, make sure you have installed:
-
-1. **Java JDK 17+**  
-   - Check installation: `java -version`  
-
-2. **Maven** (comes with IntelliJ sometimes)  
-   - Check installation: `mvn -v`  
-
-3. **Node.js & npm**
-     --**React**		  
-   - Check installation: `node -v` and `npm -v`  
-
-4. **MySQL / XAMPP**  
-   - Make sure the MySQL server is running.  
-
-5. **IntelliJ IDEA** (for backend)  
-   - Plugins required:
-     - **Lombok** (to avoid errors in Spring Boot project)
-     - **Spring Boot** plugin (optional but recommended)  
-
-6. **VSCode** (for frontend)  
+1. [Prerequisites](#prerequisites)
+2. [Backend Setup (Spring Boot)](#backend-setup-spring-boot)
+3. [Frontend Setup (React)](#frontend-setup-react)
+4. [Database Setup (MySQL)](#database-setup-mysql)
+5. [Running the Application](#running-the-application)
+6. [Notes](#notes)
 
 ---
 
-## Backend Setup (Spring Boot)
+## ✅ Prerequisites
+
+Install the following before starting:
+
+1. **Java JDK 17+**
+
+   * Verify:
+
+     ```bash
+     java -version
+     ```
+
+2. **Maven** (comes bundled with IntelliJ in most cases)
+
+   * Verify:
+
+     ```bash
+     mvn -v
+     ```
+
+3. **Node.js & npm** (required for React frontend)
+
+   * Verify:
+
+     ```bash
+     node -v
+     npm -v
+     ```
+
+4. **MySQL / XAMPP (MariaDB)**
+
+   * Ensure the MySQL server is running.
+
+5. **IntelliJ IDEA** (for backend)
+
+   * Required plugins:
+
+     * **Lombok** (mandatory, otherwise project will not compile)
+     * **Spring Boot** plugin (recommended)
+
+6. **Visual Studio Code** (for frontend development)
+
+---
+
+## ⚙️ Backend Setup (Spring Boot)
 
 1. Open **IntelliJ IDEA**.
-2. Select **Open** and navigate to the `backend/` folder.
-3. Wait for IntelliJ to **import Maven dependencies** automatically.  
-   - If Lombok errors appear, install Lombok plugin in IntelliJ:
-     - Go to `File -> Settings -> Plugins -> Marketplace -> Lombok -> Install`
-     - Restart IntelliJ.
-4. Configure the database credentials in:
 
-blog-backend/src/main/resources/application.properties
+2. Select **Open** and navigate to the `blog-backend/` folder.
 
+3. Let IntelliJ **import Maven dependencies** automatically.
 
-Update these lines with your MySQL username and password:
+   * If Lombok errors appear:
 
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/blogdb
-spring.datasource.username=root
-spring.datasource.password=your_mysql_password
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-Run the backend:
+     * Go to `File → Settings → Plugins → Marketplace`
+     * Install **Lombok** plugin
+     * Restart IntelliJ
 
-Open BlogBackendApplication.java and click Run.
+4. Configure database credentials in
+   `src/main/resources/application.properties`:
 
-By default, it will start at http://localhost:8080.
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/blogdb
+   spring.datasource.username=root
+   spring.datasource.password=your_password_here
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.show-sql=true
+   ```
 
-Backend API endpoints:
+   ⚠️ Change `username` and `password` to match your MySQL setup.
 
-Method	URL	Description
-POST	/users/signup	Create new user
-POST	/users/login	User login
-GET	/blogs	Get all blogs
-GET	/blogs/{id}	Get single blog
-POST	/blogs	Create blog
-PUT	/blogs/{id}	Update blog
-DELETE	/blogs/{id}	Delete blog
-Frontend Setup (React)
-Open VSCode and open the frontend/ folder.
-```
-Install dependencies:
+5. Run the backend by starting the `BlogBackendApplication.java` file.
 
-npm install
-Start the frontend server:
+6. The backend will start on:
 
-npm run dev
-By default, React runs on http://localhost:3000.
+   ```
+   http://localhost:8080
+   ```
 
-Ensure backend is running for API calls to work.
+---
 
-If your backend runs on a different port, update the BASE_URL in frontend/src/services/api.js or wherever you store API URLs.
+## 🎨 Frontend Setup (React)
 
-Database Setup (MySQL)
-Open phpMyAdmin or MySQL command line.
+1. Open **VS Code**.
+2. Navigate to the `blog-frontend/` folder.
+3. Install dependencies:
 
-Create a new database:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
 
-CREATE DATABASE blogdb;
-Import the database from database/blogdb.sql:
+   ```bash
+   npm run dev
+   ```
+5. The frontend will run at:
 
-In phpMyAdmin: Select database → Import → Choose file → Execute
+   ```
+   http://localhost:3000
+   ```
 
-Or via command line:
+---
 
-mysql -u root -p blogdb < database/blogdb.sql
-This will create:
+## 🗄️ Database Setup (MySQL)
 
-users table (with hashed passwords)
+1. Start **XAMPP** and enable the **MySQL module**.
+2. Open **phpMyAdmin** (`http://localhost/phpmyadmin`).
+3. Create a new database called `blogdb`.
+4. Import the SQL file:
 
-blogs table (with sample blogs)
+   * Go to **Import** tab
+   * Choose `blog-database/blogdb.sql`
+   * Click **Go**
+5. Verify that tables are created successfully.
 
-Running the Full Application
-Start MySQL server.
+---
 
-Run backend (IntelliJ → BackendApplication.java → Run).
+## 🚀 Running the Application
 
-Run frontend (VSCode → npm start).
+1. Start **MySQL (XAMPP)**.
+2. Run the **backend** (`BlogBackendApplication.java`) → [http://localhost:8080](http://localhost:8080).
+3. Run the **frontend** with `npm run dev` → [http://localhost:3000](http://localhost:3000).
+4. Open the frontend in browser → Sign up, log in, and create blogs.
 
-Open http://localhost:3000 in your browser.
+---
 
-You can now:
+## 📝 Notes
 
-Sign up new users
+* If you face errors with Lombok, ensure the **Lombok plugin** is installed in IntelliJ.
+* Make sure the backend (`8080`) and frontend (`3000`) ports are not blocked.
+* If MySQL credentials differ, update them in `application.properties`.
+* The project uses **Spring Data JPA**, so most queries are auto-generated.
 
-Log in
+---
 
-Create, edit, and view blogs
