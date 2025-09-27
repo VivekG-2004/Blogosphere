@@ -86,7 +86,7 @@ PUT	/blogs/{id}	Update blog
 DELETE	/blogs/{id}	Delete blog
 Frontend Setup (React)
 Open VSCode and open the frontend/ folder.
-
+```
 Install dependencies:
 
 npm install
