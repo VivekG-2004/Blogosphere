@@ -1,0 +1,16 @@
+# Ignore Maven target folder (compiled classes and jars will be rebuilt inside Docker)
+target/
+
+# Ignore IntelliJ/IDE files
+*.iml
+.idea/
+
+# Ignore git folder
+.git
+
+# Ignore logs
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
